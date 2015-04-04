@@ -62,8 +62,6 @@ def request_response(url, method="get", auto_raise=True,
                 "Requesting URL via %s method: %s", method.upper(), url)
             response = request_method(url, **kwargs)
 
-        logger.debug(response);
-
         # If status code != OK, then raise exception, except if the status code
         # is white listed.
         if whitelist_status_code and auto_raise:
