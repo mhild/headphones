@@ -509,8 +509,9 @@ def searchNZB(album, new=False, losslessOnly=False, albumlength=None):
             else:
                 for item in data.entries:
                     try:
-                        url = item.link
+                        #url = item.link
                         title = item.title
+                        url = int(item.links[0]['href'])
                         size = int(item.links[0]['length'])
 
                         resultlist.append((title, size, url, provider, 'nzb', True))
