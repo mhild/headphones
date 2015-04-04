@@ -9,7 +9,7 @@ def testCon(host):
         s = socket.socket()
         s.settimeout(1)
         
-        logger.info(u"Testing connectivity to host %s:%s", o.host, o.port)
+        logger.info(u"Testing connectivity to host %s:%s", o.hostname, o.port)
 
         try:
             s.connect((o.hostname, o.port))
