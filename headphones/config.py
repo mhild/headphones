@@ -82,6 +82,7 @@ _CONFIG_DEFINITIONS = {
     'GROWL_ONSNATCH': (int, 'Growl', 0),
     'GROWL_PASSWORD': (str, 'Growl', ''),
     'HEADPHONES_INDEXER': (bool_int, 'General', False),
+    'NZBCLUB': (bool_int, 'General', False),
     'HPPASS': (str, 'General', ''),
     'HPUSER': (str, 'General', ''),
     'HTTPS_CERT': (str, 'General', ''),

@@ -1154,7 +1154,8 @@ class WebInterface(object):
             "cache_sizemb": headphones.CONFIG.CACHE_SIZEMB,
             "file_permissions": headphones.CONFIG.FILE_PERMISSIONS,
             "folder_permissions": headphones.CONFIG.FOLDER_PERMISSIONS,
-            "mpc_enabled": checked(headphones.CONFIG.MPC_ENABLED)
+            "mpc_enabled": checked(headphones.CONFIG.MPC_ENABLED),
+            "use_nzbclub": checked(headphones.CONFIG.NZBCLUB),
         }
 
         # Need to convert EXTRAS to a dictionary we can pass to the config:
@@ -1199,7 +1200,7 @@ class WebInterface(object):
             "nma_enabled", "nma_onsnatch", "pushalot_enabled", "pushalot_onsnatch", "synoindex_enabled", "pushover_enabled",
             "pushover_onsnatch", "pushbullet_enabled", "pushbullet_onsnatch", "subsonic_enabled", "twitter_enabled", "twitter_onsnatch",
             "osx_notify_enabled", "osx_notify_onsnatch", "boxcar_enabled", "boxcar_onsnatch", "songkick_enabled", "songkick_filter_enabled",
-            "mpc_enabled"
+            "mpc_enabled", "use_nzbclub"
         ]
         for checked_config in checked_configs:
             if checked_config not in kwargs:

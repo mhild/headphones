@@ -466,6 +466,59 @@ def searchNZB(album, new=False, losslessOnly=False, albumlength=None):
 
     resultlist = []
 
+    # nzbclub index
+    if headphones.CONFIG.NZBCLUB:
+        provider = "nzbclub"
+        
+        if headphones.CONFIG.PREFERRED_QUALITY == 3 or losslessOnly:
+            categories = "9293"
+        elif headphones.CONFIG.PREFERRED_QUALITY == 1 or allow_lossless:
+            categories = "6095,9293"
+        else:
+            categories = "6095"
+
+        if album['Type'] == 'Other':
+            logger.info("Album type is audiobook/spokenword. Using audiobook category")
+            categories = "6105"
+            
+        # Request results
+        logger.info('Parsing results from NZBClub Indexer')
+
+        # http://www.nzbclub.com/nzbfeeds.aspx?q=David%20Gilmour&ig=2&gid=9293&st=5&ns=1
+
+        headers = {'User-Agent': USER_AGENT}
+        params = {
+            "q": urllib.urlencode(term),
+            "gid": categories,
+            "ig": 2,
+            "ns": 1,
+            "st": 5
+        }
+
+        data = request.request_feed(
+            url="http://www.nzbclub.com/nzbfeeds.aspx",
+            params=params, headers=headers,
+        )
+
+        # Process feed
+        if data:
+            if not len(data.entries):
+                logger.info(u"No results found from %s for %s" % ('NZBClub ', term))
+            else:
+                for item in data.entries:
+                    try:
+                        # url = item.link
+                        title = item.title
+                        # size = int(item.links[1]['length'])
+                        size = int(item.enclosure['length'])
+                        url = item.enclosure['url']
+
+                        resultlist.append((title, size, url, provider, 'nzb', True))
+                        logger.info('Found %s. Size: %s' % (title, helpers.bytes_to_mb(size)))
+                    except Exception as e:
+                        logger.error(u"An unknown error occurred trying to parse the feed: %s" % e)
+    ### end nzbclub index
+
     if headphones.CONFIG.HEADPHONES_INDEXER:
         provider = "headphones"
 
