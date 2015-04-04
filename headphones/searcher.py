@@ -500,7 +500,7 @@ def searchNZB(album, new=False, losslessOnly=False, albumlength=None):
             params=params, headers=headers,
         )
 
-        logger.debug(print(data));
+        logger.debug(data);
         
         # Process feed
         if data:
