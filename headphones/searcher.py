@@ -509,11 +509,11 @@ def searchNZB(album, new=False, losslessOnly=False, albumlength=None):
             else:
                 for item in data.entries:
                     try:
-                        # url = item.link
+                        url = item.link
                         title = item.title
-                        # size = int(item.links[1]['length'])
-                        size = int(item.enclosure['length'])
-                        url = item.enclosure['url']
+                        size = int(item.links[1]['length'])
+                        # size = int(item.enclosure['length'])
+                        # url = item.enclosure['url']
 
                         resultlist.append((title, size, url, provider, 'nzb', True))
                         logger.info('Found %s. Size: %s' % (title, helpers.bytes_to_mb(size)))
