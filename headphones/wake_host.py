@@ -11,7 +11,7 @@ def testCon(host):
             s.connect((o.hostname, o.port))
             return "Up"
             s.close()
-        except socket.error msg:
+        except socket.error:
             return "Down"
 
 #Wake function
