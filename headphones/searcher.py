@@ -488,7 +488,7 @@ def searchNZB(album, new=False, losslessOnly=False, albumlength=None):
 
         headers = {'User-Agent': USER_AGENT}
         params = {
-            "q": urllib.urlencode(term),
+            "q": term,
             "gid": categories,
             "ig": 2,
             "ns": 1,
