@@ -511,10 +511,11 @@ def searchNZB(album, new=False, losslessOnly=False, albumlength=None):
                     try:
                         url = item.link
                         title = item.title
-                        size = int(item.links[1]['length'])
+                        size = int(item.links[0]['length'])
 
                         resultlist.append((title, size, url, provider, 'nzb', True))
                         logger.info('Found %s. Size: %s' % (title, helpers.bytes_to_mb(size)))
+                        
                     except Exception as e:
                         logger.error(u"An unknown error occurred trying to parse the feed: %s" % e)
     ### end nzbclub index
