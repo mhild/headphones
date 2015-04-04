@@ -1,4 +1,5 @@
 import struct, socket, sys, time, os
+from headphones import logger
 from urlparse import urlparse
 
 #Test Connection function
@@ -10,7 +11,7 @@ def testCon(host):
             s.connect((o.hostname, o.port))
             return "Up"
             s.close()
-        except socket.error, e:
+        except socket.error msg:
             return "Down"
 
 #Wake function
@@ -38,9 +39,13 @@ def wakeOnLan(ethernet_address):
 def wakeHost(mac, host, retries, timeout):
     
         i = 0
+        logger.debug(u"Testing connectivity to host")
         while testCon(host) == "Down" and i < retries:
+            logger.debug(u"host seems to be down - sending magic packet")
             wakeOnLan(mac)    
             time.sleep(timeout)
             i = i + 1
             
+        if testCon(host) == "Down":
+            logger.info(u"host unreachable after sending "+retries+" magic packets - check if host is running")
         
