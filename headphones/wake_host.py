@@ -4,9 +4,13 @@ from urlparse import urlparse
 
 #Test Connection function
 def testCon(host):
+    
         o = urlparse(host)
         s = socket.socket()
         s.settimeout(1)
+        
+        logger.debug(u"Testing connectivity to host %s:%s", o.host, o.port)
+
         try:
             s.connect((o.hostname, o.port))
             return "Up"
