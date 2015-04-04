@@ -187,6 +187,25 @@
                                     </label>
                                     <input type="text" name="sab_category" value="${config['sab_category']}" size="20">
                                 </div>
+                                
+                                <div class="row">
+                                    <label title="Name of SABnzbd host MAC for wake-on-lan.">
+                                        SABnzbd host MAC
+                                    </label>
+                                    <input type="text" name="sab_host_mac" value="${config['sab_host_mac']}" size="20">
+                                </div>
+                                <div class="row">
+                                    <label title="Name of SABnzbd wake-on-lan retries.">
+                                        SABnzbd wol retries
+                                    </label>
+                                    <input type="text" name="sab_wake_retries" value="${config['sab_wake_retries']}" size="20">
+                                </div>
+                                <div class="row">
+                                    <label title="Name of SABnzbd wake-on-lan timeout between retries.">
+                                        SABnzbd wol timeout
+                                    </label>
+                                    <input type="text" name="sab_wake_timeout" value="${config['sab_wake_timeout']}" size="20">
+                                </div>
                             </fieldset>
 
                             <fieldset id="nzbget_options">

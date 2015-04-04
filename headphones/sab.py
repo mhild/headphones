@@ -24,6 +24,7 @@ import urllib2
 import httplib
 import urllib
 import ast
+from headphones import wake_host
 
 from headphones.common import USER_AGENT
 from headphones import logger
@@ -71,6 +72,11 @@ def sendNZB(nzb):
         headphones.CONFIG.SAB_HOST = headphones.CONFIG.SAB_HOST[0:len(headphones.CONFIG.SAB_HOST) - 1]
 
     url = headphones.CONFIG.SAB_HOST + "/" + "api?" + urllib.urlencode(params)
+
+    if headphones.CONFIG.SAB_HOST_MAC != None:
+        logger.debug(u"Checking if SABnzb is available - otherwise sending magic packets")
+        wake_host.wakeHost(headphones.CONFIG.SAB_HOST_MAC,headphones.CONFIG.SAB_HOST,headphones.CONFIG.SAB_WAKE_RETRIES, headphones.CONFIG.SAB_WAKE_TIMEOUT)
+
 
     try:
 
